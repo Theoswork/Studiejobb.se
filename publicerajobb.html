@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Publicera Lediga Jobb - Endeljobb.se</title>
+    <title>Publicera Lediga Jobb - TalangTrädet</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css"> <!---länka från html till css-->
     <script src="js/linkHandler.js"></script>
@@ -11,19 +11,29 @@
 <body>
     <div class="container">
         <header>
-            <h1>Endeljobb.se</h1>
+            <h1>TalangTrädet</h1>
             <p>Publicera Lediga Jobb</p>
         </header>
         <nav>
             <ul>
-                <a href="index.html">Hem</a>
-                <a href="forstudenter.html">För studenter</a>
-                <a href="jobbamedoss.html">Jobba med oss</a>
-                <a href="omoss.html">Om oss</a>
-                <a href="publicerajobb.html">Publicera jobb</a>
+                <li><a href="index.html">Hem</a></li>
+                <li><a href="for-studenter.html">För studenter</a></li>
+                <li><a href="publicera-jobb.html">Publicera lediga jobb</a></li>
+                <li><a href="jobba-med-oss.html">Jobba med Talangträdet</a></li>
+                <li><a href="om-oss.html">Om Oss</a></li>
             </ul>
         </nav>
         <div class="content">
+            <div class="sidebar">
+                <h3>Tips för en bra jobbannons</h3>
+                <ul>
+                    <li>Var tydlig med jobbtiteln</li>
+                    <li>Beskriv företagskulturen</li>
+                    <li>Lista nyckelkvalifikationer</li>
+                    <li>Inkludera löneinformation om möjligt</li>
+                    <li>Förklara ansökningsprocessen</li>
+                </ul>
+            </div>
             <div class="main-content">
                 <h2>Publicera en Jobbannons</h2>
                 <form class="job-form" id="publish-job-form">
@@ -47,8 +57,6 @@
                             <option value="Deltid">Deltid</option>
                             <option value="Praktik">Praktik</option>
                             <option value="Frilans">Frilans</option>
-                            <option value="Sommarjobb">Sommarjobb</option>
-                            <option value="Examensarbete">Examensarbete</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -69,65 +77,31 @@
             </div>
         </div>
         <footer>
-            <p>&copy; 2024 Endeljobb.se. Alla rättigheter förbehållna.</p>
+            <p>&copy; 2024 TalangTrädet. Alla rättigheter förbehållna.</p>
         </footer>
     </div>
     <script>
         document.getElementById('publish-job-form').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            if (!validateForm()) {
-                return;
-            }
-
             const newJob = {
+                id: Date.now(),
                 title: document.getElementById('job-title').value,
                 company: document.getElementById('company-name').value,
                 location: document.getElementById('location').value,
-                job_type: document.getElementById('job-type').value,
+                type: document.getElementById('job-type').value,
                 description: document.getElementById('description').value,
                 requirements: document.getElementById('requirements').value
             };
 
-            fetch('/api/jobs', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(newJob),
-            })
-            .then(response => response.json())
-            .then(data => {
-                alert('Jobbannonsen har publicerats!');
-                this.reset();
-                updatePreview();
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-                alert('Ett fel uppstod när jobbannonsen skulle publiceras. Vänligen försök igen.');
-            });
+            let jobs = JSON.parse(localStorage.getItem('jobs')) || [];
+            jobs.push(newJob);
+            localStorage.setItem('jobs', JSON.stringify(jobs));
+
+            alert('Jobbannonsen har publicerats!');
+            this.reset();
+            updatePreview();
         });
-
-        function validateForm() {
-            const requiredFields = ['job-title', 'company-name', 'location', 'job-type', 'description', 'requirements'];
-            let isValid = true;
-
-            requiredFields.forEach(field => {
-                const element = document.getElementById(field);
-                if (!element.value.trim()) {
-                    isValid = false;
-                    element.style.borderColor = 'red';
-                } else {
-                    element.style.borderColor = '';
-                }
-            });
-
-            if (!isValid) {
-                alert('Vänligen fyll i alla obligatoriska fält.');
-            }
-
-            return isValid;
-        }
 
         function updatePreview() {
             const preview = document.getElementById('preview');
@@ -135,22 +109,19 @@
             const company = document.getElementById('company-name').value;
             const location = document.getElementById('location').value;
             const type = document.getElementById('job-type').value;
-            const description = document.getElementById('description').value;
 
             preview.innerHTML = `
                 <h3>${title}</h3>
                 <p><strong>${company}</strong></p>
                 <p>📍 ${location}</p>
                 <p>🕒 ${type}</p>
-                <p>${description.substring(0, 100)}${description.length > 100 ? '...' : ''}</p>
             `;
         }
 
-        document.querySelectorAll('#publish-job-form input, #publish-job-form select, #publish-job-form textarea').forEach(input => {
+        // Uppdatera förhandsgranskningen när användaren skriver
+        document.querySelectorAll('#publish-job-form input, #publish-job-form select').forEach(input => {
             input.addEventListener('input', updatePreview);
         });
-
-        updatePreview();
     </script>
 </body>
 </html>
