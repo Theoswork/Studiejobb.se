@@ -1,4 +1,9 @@
 const mongoose = require('mongoose');
+const express = require('express');
+const app = express();
+
+// Middleware för att kunna parsa JSON-data
+app.use(express.json());
 
 // Anslut till MongoDB
 mongoose.connect('mongodb://localhost:27017/job_annonser', { useNewUrlParser: true, useUnifiedTopology: true });
@@ -14,18 +19,18 @@ const adSchema = new mongoose.Schema({
 // Skapa en modell
 const Ad = mongoose.model('annonser', adSchema);
 
-// Spara en ny jobbannons
+// Spara en ny jobbannons (detta kan tas bort om du vill spara annonser via ditt formulär)
 const newAd = new Ad({
-    title: 'Senior Developer',
+    title: 'Junior Developer',
     description: 'Seeking an experienced developer.',
     company: 'Tech Company',
     location: 'Gothenburg',
-  });
+});
   
-
 newAd.save()
   .then(() => console.log('Job ad saved!'))
   .catch(err => console.error('Error saving job ad:', err));
+
 // Hämta och visa alla annonser
 Ad.find()
   .then(ads => {
@@ -35,3 +40,22 @@ Ad.find()
   .catch(err => {
     console.error('Error fetching job ads:', err);
   });
+
+// POST-route för att spara en annons från formuläret
+app.post('/api/jobs', async (req, res) => {
+    const { title, description, company, location } = req.body;
+
+    const newJob = new Ad({ title, description, company, location }); // Använd Ad-modellen
+    try {
+        await newJob.save();
+        res.status(201).send('Jobbannons sparad!');
+    } catch (error) {
+        res.status(500).send('Det gick inte att spara annonsen.');
+        console.error(error);
+    }
+});
+
+// Starta servern
+app.listen(3000, () => {
+    console.log('Server running on http://localhost:3000');
+});

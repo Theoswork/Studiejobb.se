@@ -56,3 +56,29 @@ function updatePreview() {
         `;
     }
 }
+
+    document.getElementById('yourFormId').addEventListener('submit', function(event) {
+        event.preventDefault(); // Förhindra standardformulärs beteende
+
+        const formData = {
+            title: document.getElementById('title').value,
+            description: document.getElementById('description').value,
+            company: document.getElementById('company').value,
+            location: document.getElementById('location').value
+        };
+
+        fetch('/api/jobs', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(response => response.text())
+        .then(data => {
+            console.log(data); // Skriv ut svaret från servern
+            // Här kan du lägga till kod för att visa annonsen på sidan om du vill
+        })
+        .catch(error => console.error('Error:', error));
+    });
+

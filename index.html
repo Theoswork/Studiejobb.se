@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="css/style.css"> <!---länka från html till css-->
     <script src="js/linkHandler.js"></script>
     <script src="js/displayJobs.js" defer></script>
+    <script src="formular_data.js"></script>
+
 </head>
 <body>
     <div class="container">
@@ -64,6 +66,29 @@
             </div>
         </div>
             </div>
+            <div id="jobAdsContainer"></div>
+
+<script>
+    async function loadJobAds() {
+        const response = await fetch('/api/jobs');
+        const jobAds = await response.json();
+
+        const container = document.getElementById('jobAdsContainer');
+        jobAds.forEach(job => {
+            const jobAd = document.createElement('div');
+            jobAd.innerHTML = `
+                <h3>${job.title}</h3>
+                <p>${job.description}</p>
+                <p><strong>Företag:</strong> ${job.company}</p>
+                <p><strong>Plats:</strong> ${job.location}</p>
+            `;
+            container.appendChild(jobAd);
+        });
+    }
+
+    loadJobAds();
+</script>
+
       
      
         </div>
