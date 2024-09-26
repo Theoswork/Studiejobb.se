@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Endeljobb - Låt din karriär blomstra</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <script src="/js/common.js"></script>
+    <script src="/js/index.js"></script>
+    <style>
+        :root {
+            --color-primary: #4CAF50;
+            --color-secondary: #2196F3;
+            --color-accent: #FF9800;
+            --color-background: #f5f5f5;
+            --color-text: #333;
+            --color-light: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        body, html {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: var(--color-background);
+            color: var(--color-text);
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            max-width: 1400px;
+            margin: 0 auto;
+            box-shadow: var(--shadow);
+        }
+        header {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        nav {
+            background-color: var(--color-light);
+            box-shadow: var(--shadow);
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        nav ul li a {
+            color: var(--color-text);
+            text-decoration: none;
+            padding: 1rem;
+            display: block;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+        nav ul li a:hover {
+            background-color: var(--color-primary);
+            color: var(--color-light);
+        }
+        .content {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+        .job-list {
+            width: 25%;
+            background-color: var(--color-background);
+            padding: 1rem;
+            overflow-y: auto;
+            max-height: calc(100vh - 240px);
+        }
+        .job-details {
+            flex: 1;
+            padding: 1rem;
+            background-color: var(--color-light);
+            overflow-y: auto;
+            max-height: calc(100vh - 240px);
+        }
+        .login-section {
+            width: 25%;
+            background-color: var(--color-background);
+            padding: 1rem;
+            overflow-y: auto;
+            max-height: calc(100vh - 240px);
+        }
+        .job-item {
+            background-color: var(--color-light);
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border-radius: 5px;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .job-item:hover {
+            transform: translateY(-3px);
+            border-left: 4px solid var(--color-accent);
+        }
+        .job-title {
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+        }
+        .company {
+            color: var(--color-secondary);
+            font-weight: bold;
+        }
+        footer {
+            background-color: var(--color-primary);
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: auto;
+        }
+        .tree-button {
+            background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .tree-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .search-box, .dropdown, .form-group input {
+            width: calc(100% - 1rem);
+            box-sizing: border-box;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        .search-box:focus, .dropdown:focus, .form-group input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>TalangTrädet</h1>
+            <p>Låt din karriär blomstra</p>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Hem</a></li>
+                <li><a href="for-studenter.html">För studenter</a></li>
+                <li><a href="publicera-jobb.html">Publicera lediga jobb</a></li>
+                <li><a href="jobba-med-oss.html">Jobba med Talangträdet</a></li>
+                <li><a href="om-oss.html">Om Oss</a></li>
+            </ul>
+        </nav>
+        <div class="content">
+            <div class="job-list">
+                <input type="text" id="searchBox" placeholder="🔍 Sök jobb..." class="search-box">
+                <select id="locationFilter" class="dropdown">
+                    <option value="">📍 Välj plats</option>
+                    <option value="Stockholm">Stockholm</option>
+                    <option value="Göteborg">Göteborg</option>
+                    <option value="Malmö">Malmö</option>
+                    <option value="Uppsala">Uppsala</option>
+                    <option value="Distans">Distans</option>
+                </select>
+                <select id="jobTypeFilter" class="dropdown">
+                    <option value="">🕒 Typ av anställning</option>
+                    <option value="Heltid">Heltid</option>
+                    <option value="Deltid">Deltid</option>
+                    <option value="Praktik">Praktik</option>
+                    <option value="Frilans">Frilans</option>
+                </select>
+                <div id="jobListings"></div>
+            </div>
+            <div class="job-details" id="jobDetails">
+                <h2>Välkommen till TalangTrädet</h2>
+                <p>Här kan du hitta din nästa spännande karriärmöjlighet. Använd sökfunktionen och filtren till vänster för att hitta de jobb som passar dig bäst.</p>
+                <p>Klicka på en jobbannons för att se mer detaljerad information.</p>
+            </div>
+            <div class="login-section">
+                <h3>Logga in</h3>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="username">Användarnamn:</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Lösenord:</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <button type="submit" class="tree-button">Logga in</button>
+                </form>
+                <p><a href="#" id="forgot-password">Glömt lösenord?</a></p>
+                <p>Ny användare? <a href="#" id="create-account">Skapa konto</a></p>
+            </div>
+        </div>
+        <!--
+        <footer>
+            <p>&copy; 2024 TalangTrädet. Alla rättigheter förbehållna.</p>
+        </footer>
+        -->
+      
+    </div>
+    <script>
+        let jobs = [
+            // Behåll dina fördefinierade jobb här
+            /*
+            { id: 1, title: "Senior Full Stack-utvecklare", company: "TeknikTrädet AB", location: "Stockholm", type: "Heltid", description: "Vi söker en erfaren Full Stack-utvecklare som kan leda utvecklingen av vår nya plattform...", requirements: "• 5+ års erfarenhet av webbutveckling\n• Expertis inom JavaScript, React, och Node.js\n• Erfarenhet av molnbaserade lösningar" },
+            { id: 2, title: "Ekonomiassistent", company: "GrönaFinanser AB", location: "Göteborg", type: "Heltid", description: "Som ekonomiassistent hos oss kommer du att arbeta med olika aspekter av företagets ekonomi...", requirements: "• Utbildning inom ekonomi eller redovisning\n• God kunskap i Excel\n• Noggrannhet och god kommunikationsförmåga" },
+            { id: 3, title: "Digital Marknadsförare", company: "VäxandeVarumärken AB", location: "Malmö", type: "Heltid", description: "Vi söker en kreativ digital marknadsförare som kan hjälpa oss att öka vår online närvaro...", requirements: "• Erfarenhet av digital marknadsföring och sociala medier\n• Kunskaper i SEO och Google Analytics\n• God förmåga att skapa engagerande innehåll" },
+            { id: 4, title: "UX/UI Designer", company: "AppMagikerna", location: "Stockholm", type: "Heltid", description: "Vill du vara med och skapa nästa generations användarupplevelser? Vi söker en talangfull UX/UI designer...", requirements: "• Portfolio med imponerande digitala designprojekt\n• Erfarenhet av Figma eller Sketch\n• Förmåga att omsätta användarbehov till intuitiva designlösningar" },
+            { id: 5, title: "Data Scientist", company: "AnalyticaPro", location: "Uppsala", type: "Heltid", description: "Jobba med storskalig dataanalys och maskininlärning i vårt snabbväxande team...", requirements: "• Magister eller doktorsexamen i datavetenskap, statistik eller liknande\n• Erfarenhet av Python och R\n• Kunskap om maskininlärningsalgoritmer och statistisk modellering" },
+            { id: 6, title: "Kundtjänstmedarbetare", company: "SupportStjärnan", location: "Distans", type: "Deltid", description: "Ge förstklassig kundsupport via telefon, e-post och chatt. Perfekt för studenter!", requirements: "• Utmärkta kommunikationsförmågor\n• Tålamod och empati\n• Grundläggande datorkunskaper" },
+            { id: 7, title: "Juniormäklare", company: "FastighetsPro", location: "Göteborg", type: "Heltid", description: "Kickstarta din karriär inom fastighetsförmedling hos oss! Vi erbjuder mentorskap och utvecklingsmöjligheter.", requirements: "• Nyexaminerad från mäklarutbildning\n• Drivkraft och social kompetens\n• Vilja att lära och växa inom branschen" },
+            { id: 8, title: "Content Creator", company: "SocialMediaMasters", location: "Malmö", type: "Frilans", description: "Skapa engagerande innehåll för våra klienters sociala medier. Flexibla arbetstider och möjlighet att jobba hemifrån.", requirements: "• Kreativitet och ett öga för trender\n• Erfarenhet av innehållsskapande för sociala medier\n• Kunskaper i bild- och videoredigering" }
+            */
+            ];
+        function loadJobs() {
+            const savedJobs = JSON.parse(localStorage.getItem('jobs')) || [];
+            jobs = [...jobs, ...savedJobs];
+            displayJobs(jobs);
+}
+
+// Anropa loadJobs när sidan laddas
+window.addEventListener('load', loadJobs);
+
+        function displayJobs(filteredJobs) {
+            const jobListings = document.getElementById('jobListings');
+            jobListings.innerHTML = '';
+            filteredJobs.forEach(job => {
+                const jobElement = document.createElement('div');
+                jobElement.className = 'job-item';
+                jobElement.innerHTML = `
+                    <h3 class="job-title">${job.title}</h3>
+                    <p class="company">${job.company}</p>
+                    <p>📍 ${job.location}</p>
+                    <p>🕒 ${job.type}</p>
+                `;
+                jobElement.onclick = () => showJobDetails(job);
+                jobListings.appendChild(jobElement);
+            });
+        }
+
+        function showJobDetails(job) {
+            const jobDetails = document.getElementById('jobDetails');
+            jobDetails.innerHTML = `
+                <h2>${job.title}</h2>
+                <h3>${job.company}</h3>
+                <p><strong>📍 Plats:</strong> ${job.location}</p>
+                <p><strong>🕒 Typ:</strong> ${job.type}</p>
+                <h4>📝 Beskrivning:</h4>
+                <p>${job.description}</p>
+                <h4>✅ Krav:</h4>
+                <pre>${job.requirements}</pre>
+                <button class="tree-button">Ansök Nu</button>
+            `;
+        }
+
+        function filterJobs() {
+    const searchTerm = document.getElementById('searchBox').value.toLowerCase();
+    const locationFilter = document.getElementById('locationFilter').value;
+    const jobTypeFilter = document.getElementById('jobTypeFilter').value;
+
+    const filteredJobs = jobs.filter(job => 
+        (job.title.toLowerCase().includes(searchTerm) || 
+        job.company.toLowerCase().includes(searchTerm) || 
+        job.description.toLowerCase().includes(searchTerm)) &&
+        (locationFilter === "" || job.location === locationFilter) &&
+        (jobTypeFilter === "" || job.type === jobTypeFilter)
+    );
+
+    displayJobs(filteredJobs);
+}
+
+        document.getElementById('searchBox').addEventListener('input', filterJobs);
+        loadJobs();
+    </script>
+</body>
+</html>

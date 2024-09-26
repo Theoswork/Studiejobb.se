@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>För Studenter - TalangTrädet</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #4CAF50;
+            --color-secondary: #2196F3;
+            --color-accent: #FF9800;
+            --color-background: #f5f5f5;
+            --color-text: #333;
+            --color-light: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        body, html {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background-color: var(--color-background);
+            color: var(--color-text);
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            max-width: 1400px;
+            margin: 0 auto;
+            box-shadow: var(--shadow);
+        }
+        header {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+        }
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        nav {
+            background-color: var(--color-light);
+            box-shadow: var(--shadow);
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        nav ul li a {
+            color: var(--color-text);
+            text-decoration: none;
+            padding: 1rem;
+            display: block;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+        nav ul li a:hover {
+            background-color: var(--color-primary);
+            color: var(--color-light);
+        }
+        .content {
+            display: flex;
+            flex: 1;
+            background-color: var(--color-light);
+        }
+        .search-and-jobs {
+            width: 30%;
+            background-color: var(--color-background);
+            padding: 1rem;
+            overflow-y: auto;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+        .job-listings {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+        .job-item {
+            background-color: var(--color-light);
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border-radius: 5px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        .job-item:hover {
+            transform: translateY(-3px);
+            border-left-color: var(--color-accent);
+        }
+        .job-title {
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+        }
+        .company {
+            color: var(--color-secondary);
+            font-weight: bold;
+        }
+        footer {
+            background-color: var(--color-primary);
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+        .tree-button {
+            background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        .tree-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .search-box, .dropdown {
+            width: calc(100% - 1rem);
+            box-sizing: border-box;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        .search-box:focus, .dropdown:focus {
+            box-shadow: 0 0 0 2px var(--color-primary);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>TalangTrädet</h1>
+            <p>För Studenter - Väx med oss</p>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Hem</a></li>
+                <li><a href="for-studenter.html">För studenter</a></li>
+                <li><a href="publicera-jobb.html">Publicera lediga jobb</a></li>
+                <li><a href="jobba-med-oss.html">Jobba med Talangträdet</a></li>
+                <li><a href="om-oss.html">Om Oss</a></li>
+            </ul>
+        </nav>
+        <div class="content">
+            <div class="search-and-jobs">
+                <input type="text" placeholder="🔍 Sök studentjobb..." class="search-box">
+                <select class="dropdown">
+                    <option value="">📚 Välj jobbtyp</option>
+                    <option value="deltid">Deltid</option>
+                    <option value="examensarbete">Examensarbete</option>
+                    <option value="praktik">Praktik</option>
+                    <option value="sommarjobb">Sommarjobb</option>
+                </select>
+                <select class="dropdown">
+                    <option value="">🎓 Välj studieområde</option>
+                    <option value="it">IT & Data</option>
+                    <option value="ekonomi">Ekonomi & Finans</option>
+                    <option value="teknik">Teknik & Ingenjör</option>
+                    <option value="marknadsföring">Marknadsföring</option>
+                    <option value="medicin">Medicin & Hälsa</option>
+                </select>
+                <h3>Senaste studentjobben</h3>
+                <div class="job-item">
+                    <h3 class="job-title">💻 Deltid Webbutvecklare</h3>
+                    <p class="company">🏢 TechStart AB</p>
+                    <p>📍 Stockholm (Flexibla timmar)</p>
+                    <button class="tree-button">Ansök Nu</button>
+                </div>
+                <div class="job-item">
+                    <h3 class="job-title">🔬 Examensarbete: AI i Vården</h3>
+                    <p class="company">🏥 HealthTech Innovation</p>
+                    <p>📍 Göteborg</p>
+                    <button class="tree-button">Ansök Nu</button>
+                </div>
+                <div class="job-item">
+                    <h3 class="job-title">📊 Sommarprogram: Finansanalys</h3>
+                    <p class="company">🏦 Nordea</p>
+                    <p>📍 Malmö</p>
+                    <button class="tree-button">Ansök Nu</button>
+                </div>
+            </div>
+            <div class="job-listings">
+                <h2>Välkommen Studenter!</h2>
+                <p>Här på TalangTrädet hjälper vi dig att hitta de perfekta möjligheterna som passar din studiesituation och framtida karriärambitioner.</p>
+                
+                <h3>Vad vi erbjuder:</h3>
+                <ul>
+                    <li><strong>🕒 Deltidsjobb:</strong> Flexibla jobb som passar ditt schema och ger värdefull arbetslivserfarenhet.</li>
+                    <li><strong>📝 Examensarbeten:</strong> Spännande projekt hos företag som kan leda till framtida anställning.</li>
+                    <li><strong>🌱 Praktikplatser:</strong> Få hands-on erfarenhet inom ditt studieområde.</li>
+                    <li><strong>☀️ Sommarjobb:</strong> Utmanande uppdrag under sommarmånaderna för att bygga ditt CV.</li>
+                </ul>
+
+                <h3>Tips för jobbsökande studenter:</h3>
+                <ol>
+                    <li>Anpassa ditt CV för varje ansökan</li>
+                    <li>Framhäv relevanta kurser och projekt</li>
+                    <li>Var öppen för olika typer av erfarenheter</li>
+                    <li>Nätverka med alumner och på karriärmässor</li>
+                    <li>Håll dina profiler på LinkedIn och TalangTrädet uppdaterade</li>
+                </ol>
+
+                <h3>Kommande evenemang:</h3>
+                <ul>
+                    <li>📅 15 april: Digital Karriärmässa för IT-studenter</li>
+                    <li>📅 2 maj: Workshop: Så skriver du ett vinnande CV</li>
+                    <li>📅 10 juni: Sommarjobbskickoff - Nätverka med arbetsgivare</li>
+                </ul>
+
+                <p>Börja din sökning idag och ta första steget mot en lysande karriär. Använd sökfunktionen och filtren till vänster för att hitta de möjligheter som passar dig bäst!</p>
+                
+                <button class="tree-button">Skapa din profil</button>
+            </div>
+        </div>
+        <footer>
+            <p>&copy; 2024 TalangTrädet. Alla rättigheter förbehållna.</p>
+        </footer>
+    </div>
+</body>
+</html>
