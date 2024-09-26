@@ -1,22 +1,37 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/jobPostsDB', { useNewUrlParser: true, useUnifiedTopology: true });
 
-const jobPostSchema = new mongoose.Schema({
-    title: String,
-    description: String,
-    company: String,
-    datePosted: { type: Date, default: Date.now }
+// Anslut till MongoDB
+mongoose.connect('mongodb://localhost:27017/job_annonser', { useNewUrlParser: true, useUnifiedTopology: true });
+
+// Definiera en schema för jobbannonser
+const adSchema = new mongoose.Schema({
+  title: String,
+  description: String,
+  company: String,
+  location: String,
 });
 
-const JobPost = mongoose.model('JobPost', jobPostSchema);
+// Skapa en modell
+const Ad = mongoose.model('annonser', adSchema);
 
-app.post('/api/job-post', async (req, res) => {
-    const jobPost = new JobPost(req.body);
-    await jobPost.save();
-    res.status(201).send('Jobbannons publicerad!');
-});
+// Spara en ny jobbannons
+const newAd = new Ad({
+    title: 'Senior Developer',
+    description: 'Seeking an experienced developer.',
+    company: 'Tech Company',
+    location: 'Gothenburg',
+  });
+  
 
-app.get('/api/job-posts', async (req, res) => {
-    const jobPosts = await JobPost.find();
-    res.json(jobPosts);
-});
+newAd.save()
+  .then(() => console.log('Job ad saved!'))
+  .catch(err => console.error('Error saving job ad:', err));
+// Hämta och visa alla annonser
+Ad.find()
+  .then(ads => {
+    console.log('All job ads:', ads);
+    mongoose.connection.close(); // Stäng anslutningen när du är klar
+  })
+  .catch(err => {
+    console.error('Error fetching job ads:', err);
+  });
