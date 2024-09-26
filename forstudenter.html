@@ -16,11 +16,11 @@
         </header>
         <nav>
             <ul>
-                <a href="index.html">Hem</a>
-                <a href="forstudenter.html">För studenter</a>
-                <a href="jobbamedoss.html">Jobba med oss</a>
-                <a href="omoss.html">Om oss</a>
-                <a href="publicerajobb.html">Publicera jobb</a>
+                <li><a href="index.html">Hem</a></li>
+                <li><a href="forstudenter.html">För studenter</a></li>
+                <li><a href="publicerajobb.html">Publicera lediga jobb</a></li>
+                <li><a href="jobbamedoss.html">Jobba med Talangträdet</a></li>
+                <li><a href="omoss.html">Om Oss</a></li>
             </ul>
         </nav>
         <div class="content">
@@ -81,58 +81,6 @@
             <p>&copy; 2024 Endeljobb.se. Alla rättigheter förbehållna.</p>
         </footer>
     </div>
-    <script>
-        // Simulera hämtning av de senaste jobben
-        function getLatestJobs() {
-            const jobs = [
-                { title: "Deltid Webbutvecklare", company: "TechStart AB", location: "Stockholm" },
-                { title: "Examensarbete: AI i Vården", company: "HealthTech Innovation", location: "Göteborg" },
-                { title: "Sommarprogram: Finansanalys", company: "Nordea", location: "Malmö" }
-            ];
 
-            const latestJobsContainer = document.getElementById('latest-jobs');
-            jobs.forEach(job => {
-                const jobElement = document.createElement('div');
-                jobElement.className = 'job-item';
-                jobElement.innerHTML = `
-                    <h3 class="job-title">${job.title}</h3>
-                    <p class="company">${job.company}</p>
-                    <p>📍 ${job.location}</p>
-                    <button class="tree-button" onclick="applyForJob('${job.title}')">Ansök Nu</button>
-                `;
-                latestJobsContainer.appendChild(jobElement);
-            });
-        }
-
-        // Simulera hämtning av kommande evenemang
-        function getUpcomingEvents() {
-            const events = [
-                "📅 15 april: Digital Karriärmässa för IT-studenter",
-                "📅 2 maj: Workshop: Så skriver du ett vinnande CV",
-                "📅 10 juni: Sommarjobbskickoff - Nätverka med arbetsgivare"
-            ];
-
-            const eventsContainer = document.getElementById('events');
-            events.forEach(event => {
-                const li = document.createElement('li');
-                li.textContent = event;
-                eventsContainer.appendChild(li);
-            });
-        }
-
-        function applyForJob(jobTitle) {
-            alert(`Du har ansökt om jobbet: ${jobTitle}`);
-        }
-
-        function createProfile() {
-            alert("Tack för ditt intresse! Funktionen för att skapa profil kommer snart.");
-        }
-
-        // Kör funktionerna när sidan laddas
-        window.onload = function() {
-            getLatestJobs();
-            getUpcomingEvents();
-        };
-    </script>
 </body>
 </html>

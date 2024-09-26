@@ -17,10 +17,10 @@
         <nav>
             <ul>
                 <li><a href="index.html">Hem</a></li>
-                <li><a href="for-studenter.html">För studenter</a></li>
-                <li><a href="publicera-jobb.html">Publicera lediga jobb</a></li>
-                <li><a href="jobba-med-oss.html">Jobba med Talangträdet</a></li>
-                <li><a href="om-oss.html">Om Oss</a></li>
+                <li><a href="forstudenter.html">För studenter</a></li>
+                <li><a href="publicerajobb.html">Publicera lediga jobb</a></li>
+                <li><a href="jobbamedoss.html">Jobba med Talangträdet</a></li>
+                <li><a href="omoss.html">Om Oss</a></li>
             </ul>
         </nav>
         <div class="content">
@@ -77,51 +77,9 @@
             </div>
         </div>
         <footer>
-            <p>&copy; 2024 TalangTrädet. Alla rättigheter förbehållna.</p>
+            <p>&copy; 2024 Studiejobb.se Alla rättigheter förbehållna.</p>
         </footer>
     </div>
-    <script>
-        document.getElementById('publish-job-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const newJob = {
-                id: Date.now(),
-                title: document.getElementById('job-title').value,
-                company: document.getElementById('company-name').value,
-                location: document.getElementById('location').value,
-                type: document.getElementById('job-type').value,
-                description: document.getElementById('description').value,
-                requirements: document.getElementById('requirements').value
-            };
-
-            let jobs = JSON.parse(localStorage.getItem('jobs')) || [];
-            jobs.push(newJob);
-            localStorage.setItem('jobs', JSON.stringify(jobs));
-
-            alert('Jobbannonsen har publicerats!');
-            this.reset();
-            updatePreview();
-        });
-
-        function updatePreview() {
-            const preview = document.getElementById('preview');
-            const title = document.getElementById('job-title').value;
-            const company = document.getElementById('company-name').value;
-            const location = document.getElementById('location').value;
-            const type = document.getElementById('job-type').value;
-
-            preview.innerHTML = `
-                <h3>${title}</h3>
-                <p><strong>${company}</strong></p>
-                <p>📍 ${location}</p>
-                <p>🕒 ${type}</p>
-            `;
-        }
-
-        // Uppdatera förhandsgranskningen när användaren skriver
-        document.querySelectorAll('#publish-job-form input, #publish-job-form select').forEach(input => {
-            input.addEventListener('input', updatePreview);
-        });
-    </script>
+    <script src="js/publicera.js" defer></script>
 </body>
 </html>

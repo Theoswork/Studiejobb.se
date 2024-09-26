@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css"> <!---länka från html till css-->
     <script src="js/linkHandler.js"></script>
+    <script src="js/displayJobs.js" defer></script>
 </head>
 <body>
     <div class="container">
@@ -16,19 +17,18 @@
         </header>
         <nav>
             <ul>
-                <a href="index.html">Hem</a>
-                <a href="forstudenter.html">För studenter</a>
-                <a href="jobbamedoss.html">Jobba med oss</a>
-                <a href="omoss.html">Om oss</a>
-                <a href="publicerajobb.html">Publicera jobb</a>
+                <li><a href="index.html">Hem</a></li>
+                <li><a href="forstudenter.html">För studenter</a></li>
+                <li><a href="publicerajobb.html">Publicera lediga jobb</a></li>
+                <li><a href="jobbamedoss.html">Jobba med Talangträdet</a></li>
+                <li><a href="omoss.html">Om Oss</a></li>
             </ul>
         </nav>
+        
         <div class="content">
             <div class="job-list">
                 <input type="text" id="searchBox" placeholder="🔍 Sök jobb..." class="search-box">
-                <select id="locationFilter" class="dropdown">
-                    <option value="">📍 Välj plats</option>
-                </select>
+                <input type="text" id="locationFilter" placeholder="📍 Skriv in plats" class="search-box">
                 <select id="jobTypeFilter" class="dropdown">
                     <option value="">🕒 Typ av anställning</option>
                     <option value="Heltid">Heltid</option>
@@ -38,111 +38,39 @@
                     <option value="Sommarjobb">Sommarjobb</option>
                     <option value="Examensarbete">Examensarbete</option>
                 </select>
-                <div id="jobListings"></div>
+                <h2>Senaste Jobben</h2>
+                <div id="jobs-container"></div>
             </div>
-            <div class="job-details" id="jobDetails">
+            <div class="job-details" id="job-details">
                 <h2>Välkommen till Studiejobb.se</h2>
-                <p>Här kan du hitta din nästa spännande karriärmöjlighet. Använd sökfunktionen och filtren till vänster för att hitta de jobb som passar dig bäst.</p>
-                <p>Klicka på en jobbannons för att se mer detaljerad information.</p>
+                <p>Hitta ditt nästa spännande jobb eller praktikplats här på Studiejobb.se!</p>
+                <h3>Hur du använder vår jobbsökning:</h3>
+                <ol>
+                    <li>Använd sökrutan för att hitta jobb baserat på titel eller nyckelord.</li>
+                    <li>Filtrera efter plats för att hitta jobb nära dig.</li>
+                    <li>Välj typ av anställning som passar dina behov.</li>
+                    <li>Klicka på en annons i listan till vänster för att se mer detaljer.</li>
+                </ol>
+                <h3>Varför välja Studiejobb.se?</h3>
+                <ul>
+                    <li>Skräddarsydda jobbmöjligheter för studenter och nyexaminerade.</li>
+                    <li>Enkelt att söka och filtrera jobb efter dina preferenser.</li>
+                    <li>Direkt kontakt med arbetsgivare som söker ung talang.</li>
+                    <li>Regelbundet uppdaterade jobbannonser från olika branscher.</li>
+                </ul>
+                <p>Börja din jobbsökning idag och ta första steget mot din framtida karriär!</p>
             </div>
         </div>
+            </div>
+        </div>
+            </div>
+      
+     
+        </div>
+        
         <footer>
             <p>&copy; 2024 Studiejobb.se. Alla rättigheter förbehållna.</p>
         </footer>
     </div>
-    <script>
-        let allJobs = [];
-
-        function loadJobs() {
-            fetch('/api/jobs')
-                .then(response => response.json())
-                .then(jobs => {
-                    allJobs = jobs;
-                    displayJobs(jobs);
-                    populateLocationFilter(jobs);
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                   // alert('Ett fel uppstod när jobben skulle hämtas. Vänligen försök igen senare.');
-                });
-        }
-
-        function displayJobs(jobs) {
-            const jobListings = document.getElementById('jobListings');
-            jobListings.innerHTML = '';
-            jobs.forEach(job => {
-                const jobElement = document.createElement('div');
-                jobElement.className = 'job-item';
-                jobElement.innerHTML = `
-                    <h3 class="job-title">${job.title}</h3>
-                    <p class="company">${job.company}</p>
-                    <p>📍 ${job.location}</p>
-                    <p>🕒 ${job.job_type}</p>
-                `;
-                jobElement.onclick = () => showJobDetails(job.id);
-                jobListings.appendChild(jobElement);
-            });
-        }
-
-        function showJobDetails(jobId) {
-            fetch(`/api/jobs/${jobId}`)
-                .then(response => response.json())
-                .then(job => {
-                    const jobDetails = document.getElementById('jobDetails');
-                    jobDetails.innerHTML = `
-                        <h2>${job.title}</h2>
-                        <h3>${job.company}</h3>
-                        <p><strong>📍 Plats:</strong> ${job.location}</p>
-                        <p><strong>🕒 Typ:</strong> ${job.job_type}</p>
-                        <h4>📝 Beskrivning:</h4>
-                        <p>${job.description}</p>
-                        <h4>✅ Krav:</h4>
-                        <pre>${job.requirements}</pre>
-                        <button class="tree-button" onclick="applyForJob(${job.id})">Ansök Nu</button>
-                    `;
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Ett fel uppstod när jobbinformationen skulle hämtas. Vänligen försök igen senare.');
-                });
-        }
-
-        function applyForJob(jobId) {
-            alert('Tack för din ansökan! Vi kommer att kontakta dig snart.');
-        }
-
-        function filterJobs() {
-            const searchTerm = document.getElementById('searchBox').value.toLowerCase();
-            const locationFilter = document.getElementById('locationFilter').value;
-            const jobTypeFilter = document.getElementById('jobTypeFilter').value;
-
-            const filteredJobs = allJobs.filter(job => 
-                (job.title.toLowerCase().includes(searchTerm) || 
-                job.company.toLowerCase().includes(searchTerm) || 
-                job.description.toLowerCase().includes(searchTerm)) &&
-                (locationFilter === "" || job.location === locationFilter) &&
-                (jobTypeFilter === "" || job.job_type === jobTypeFilter)
-            );
-
-            displayJobs(filteredJobs);
-        }
-
-        function populateLocationFilter(jobs) {
-            const locations = [...new Set(jobs.map(job => job.location))];
-            const locationFilter = document.getElementById('locationFilter');
-            locations.forEach(location => {
-                const option = document.createElement('option');
-                option.value = location;
-                option.textContent = location;
-                locationFilter.appendChild(option);
-            });
-        }
-
-        document.getElementById('searchBox').addEventListener('input', filterJobs);
-        document.getElementById('locationFilter').addEventListener('change', filterJobs);
-        document.getElementById('jobTypeFilter').addEventListener('change', filterJobs);
-
-        window.addEventListener('load', loadJobs);
-    </script>
 </body>
 </html>
