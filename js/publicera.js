@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
     const publishForm = document.getElementById('publish-job-form');
     if (publishForm) {
-        publishForm.addEventListener('submit', function(e) {
+        publishForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
+            // Skapa jobbannonsdata från formuläret
             const newJob = {
-                id: Date.now(),
                 title: document.getElementById('job-title').value,
                 company: document.getElementById('company-name').value,
                 location: document.getElementById('location').value,
@@ -13,15 +13,28 @@ document.addEventListener('DOMContentLoaded', function() {
                 description: document.getElementById('description').value,
                 requirements: document.getElementById('requirements').value
             };
-            
 
-            let jobs = JSON.parse(localStorage.getItem('jobs')) || [];
-            jobs.push(newJob);
-            localStorage.setItem('jobs', JSON.stringify(jobs));
+            try {
+                // Skicka data till servern via en POST-begäran
+                const response = await fetch('/api/jobs', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(newJob)
+                });
 
-            alert('Jobbannonsen har publicerats!');
-            this.reset();
-            updatePreview();
+                if (response.ok) {
+                    alert('Jobbannonsen har publicerats!');
+                    this.reset(); // Rensa formuläret efter inlämning
+                    updatePreview(); // Uppdatera förhandsgranskningen
+                } else {
+                    alert('Något gick fel. Försök igen.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Ett fel inträffade. Försök igen senare.');
+            }
         });
 
         // Uppdatera förhandsgranskningen när användaren skriver
@@ -56,29 +69,3 @@ function updatePreview() {
         `;
     }
 }
-
-    document.getElementById('yourFormId').addEventListener('submit', function(event) {
-        event.preventDefault(); // Förhindra standardformulärs beteende
-
-        const formData = {
-            title: document.getElementById('title').value,
-            description: document.getElementById('description').value,
-            company: document.getElementById('company').value,
-            location: document.getElementById('location').value
-        };
-
-        fetch('/api/jobs', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
-        })
-        .then(response => response.text())
-        .then(data => {
-            console.log(data); // Skriv ut svaret från servern
-            // Här kan du lägga till kod för att visa annonsen på sidan om du vill
-        })
-        .catch(error => console.error('Error:', error));
-    });
-

@@ -4,7 +4,7 @@ document.getElementById('jobAdForm').addEventListener('submit', function(event) 
     const formData = new FormData(this);
     const data = Object.fromEntries(formData.entries());
 
-    fetch('/api/annonser', {
+    fetch('/api/jobs', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -26,7 +26,7 @@ document.getElementById('jobAdForm').addEventListener('submit', function(event) 
 
 // Funktion för att ladda annonser
 function loadAds() {
-    fetch('/api/annonser')
+    fetch('/api/jobs')
         .then(response => response.json())
         .then(ads => {
             const adsContainer = document.getElementById('adsContainer');

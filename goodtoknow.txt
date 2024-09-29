@@ -1,0 +1,2 @@
+MongoDB compass
+GET_jobs.js är länkad till Studiejobb.se, men det är nog till min github
