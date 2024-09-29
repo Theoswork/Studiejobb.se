@@ -1,2 +1,45 @@
 MongoDB compass
 GET_jobs.js är länkad till Studiejobb.se, men det är nog till min github
+Här är en sammanfattning av vad vi har gjort och lärt oss, inklusive termer och funktionerna för de olika filerna och programmen:
+
+Sammanfattning av projektet
+Översikt
+
+Du har byggt en webbapplikation där användare kan publicera jobbannonser. När annonserna publiceras sparas de i en MongoDB-databas. Detta gör att annonserna kan visas på din webbplats när den går live.
+Tekniker och verktyg
+
+HTML/CSS/JavaScript: Används för att bygga frontend av webbapplikationen.
+Node.js: En JavaScript-runtime som används för att köra serverkod.
+Express.js: Ett ramverk för Node.js som gör det enklare att bygga webbapplikationer och API
+.
+MongoDB: En NoSQL-databas som används för att lagra jobbannonser.
+MongoDB Compass: Ett GUI-verktyg för att interagera med MongoDB-databaser.
+CORS (Cross-Origin Resource Sharing): En säkerhetsfunktion som begränsar hur resurser kan begäras från en annan domän.
+Filer och deras funktioner
+
+publicera.js:
+
+Innehåller JavaScript-kod för att hantera publiceringsformuläret.
+Samlar in användardata (jobbtitel, företag, plats, typ, beskrivning, krav) och skickar en POST-begäran till servern (API) för att spara annonser i databasen.
+Hanterar användarinteraktioner och uppdaterar förhandsgranskningen av jobbannonsen.
+server.js:
+
+En Node.js-server som lyssnar på inkommande förfrågningar.
+Ansluter till MongoDB-databasen och definierar ett schema för jobbannonser.
+Exponerar ett API-endpoint (/api/jobs) för att ta emot POST-begäran från frontend och spara data i databasen.
+HTML-sidan (publierajobb.html):
+
+Innehåller ett formulär där användare kan ange information om jobbannonser.
+Använder publicera.js för att hantera formulärinlämningen och visa förhandsgranskningen av jobben.
+Viktiga steg
+
+Installera nödvändiga paket: Du har installerat Express och Mongoose för att kunna bygga servern och interagera med databasen.
+Konfigurera CORS: För att tillåta kommunikation mellan din frontend (på http://127.0.0.1:5500) och backend (på http://localhost:3000), har du aktiverat CORS i din serverkonfiguration.
+Skapa en databas: Du har använt MongoDB Compass för att se din databas och samlingen där jobbannonser lagras.
+Testa funktionalitet: Du har felsökt och bekräftat att jobbannonser skickas och sparas i databasen.
+Slutsats
+
+Du har lyckats bygga en funktionell webbapplikation som låter användare publicera jobbannonser. Genom att integrera frontend och backend har du lärt dig om webbutveckling, API-hantering och databaskommunikation.
+Nästa steg
+
+
