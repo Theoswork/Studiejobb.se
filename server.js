@@ -20,7 +20,11 @@ const adSchema = new mongoose.Schema({
   description: String,
   company: String,
   location: String,
+  type: String, // Anställningsform
+  requirements: String, // Krav och Kvalifikationer
+  keywords: [String] // Nyckelord som en array av strängar
 });
+
 
 const Ad = mongoose.model('annonsers', adSchema); 
 

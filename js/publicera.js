@@ -8,9 +8,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 title: document.getElementById('job-title').value,
                 company: document.getElementById('company-name').value,
                 location: document.getElementById('location').value,
-                type: document.getElementById('job-type').value,
+                type: document.getElementById('job-type').value, // Anställningsform
                 description: document.getElementById('description').value,
-                requirements: document.getElementById('requirements').value
+                requirements: document.getElementById('requirements').value, // Krav och Kvalifikationer
+                keywords: document.getElementById('keywords').value.split(',').map(keyword => keyword.trim()) // Dela upp nyckelord på kommatecken
             };
 
             try {

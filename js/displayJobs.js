@@ -46,6 +46,8 @@ function displayJobs() {
                 <p><strong>${job.company}</strong></p>
                 <p>📍 ${job.location}</p>
                 <p>🕒 ${job.type}</p>
+                <p>📍 ${description}</p>
+                <p>🕒 ${requirements}</p>
                 ${job.keywords ? `<p>🏷️ ${job.keywords.join(', ')}</p>` : ''}
             </div>
         `;

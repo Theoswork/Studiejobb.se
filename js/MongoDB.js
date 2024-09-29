@@ -43,9 +43,14 @@ Ad.find()
 
 // POST-route för att spara en annons från formuläret
 app.post('/api/jobs', async (req, res) => {
-    const { title, description, company, location } = req.body;
+  const { title, description, company, location, type, requirements, keywords } = req.body;
 
-    const newJob = new Ad({ title, description, company, location }); // Använd Ad-modellen
+  const newJob = new Job({ title, description, company, location, type, requirements, keywords });
+  await newJob.save();
+  
+  res.status(201).send('Jobbannons sparad!');
+});
+
     try {
         await newJob.save();
         res.status(201).send('Jobbannons sparad!');
