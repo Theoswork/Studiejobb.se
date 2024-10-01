@@ -189,11 +189,14 @@ label[for="keywords"] {
 .form-group input,
 .form-group select,
 .form-group textarea {
-    width: 100%; /* Säkerställ att fältet täcker hela bredden */s
+    width: 100%; /* Säkerställ att fältet täcker hela bredden */
     padding: 0.5rem; /* Ge utrymme inuti fältet */
     border: 1px solid #ddd; /* Definiera en kantlinje */
     border-radius: 4px; /* Rundade hörn */
     font-family: 'Poppins', sans-serif; /* Använd samma typsnitt */
+}
+#toast {
+    transition: opacity 0.5s ease; /* Lägger till en övergångseffekt */
 }
 
 .form-group textarea {

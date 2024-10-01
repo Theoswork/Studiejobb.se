@@ -41,8 +41,8 @@ document.getElementById('register-form').addEventListener('submit', async (event
 document.getElementById('login-form').addEventListener('submit', async (event) => {
     event.preventDefault(); // Förhindra standardbeteende
 
-    const username = getElementById('username-login').value;
-    const password = getElementById('password-login').value;
+    const username = document.getElementById('username-login').value;
+    const password = document.getElementById('password-login').value;
 
     try {
         const response = await fetch('http://localhost:3000/api/login', {
@@ -53,20 +53,25 @@ document.getElementById('login-form').addEventListener('submit', async (event) =
 
         if (!response.ok) {
             const result = await response.json();
-            throw new Error(result.message); // Kasta ett fel om svaret inte är okej
+            throw new Error(result.message); // Throw an error to be caught in the catch block
         }
 
         const result = await response.json();
-        alert('Inloggning lyckades!'); // Visa inloggning lyckades meddelande
+
+        // Visa toast-notifikation
+        const toast = document.getElementById('toast');
+        toast.style.display = 'block';
 
         // Spara tokenet i localStorage (eller sessionStorage)
         localStorage.setItem('token', result.token);
 
-        // Omdirigera användaren till en annan sida, till exempel en dashboard
-        window.location.href = '/index.html'; // Ändra till rätt väg
+        // Stäng av toast efter 2 sekunder och omdirigera
+        setTimeout(() => {
+            toast.style.display = 'none'; // Dölj toasten
+            window.location.href = '/index.html'; // Omdirigera användaren
+        }, 2000); // Omdirigera efter 2 sekunder (2000 ms)
 
     } catch (error) {
         alert('Felaktiga inloggningsuppgifter: ' + error.message); // Hantera fel
     }
 });
-
