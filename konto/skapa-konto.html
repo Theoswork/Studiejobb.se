@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skapa Konto - TalangTrädet</title>
+    <link rel="stylesheet" href="../css/style.css"> <!-- Länk till CSS -->
+    <script src="loginNewuser.js" defer></script> <!-- Länk till JavaScript-filen -->
+</head>
+<body>
+    <div class="login-container">
+        <header>
+            <h1>TalangTrädet</h1>
+            <p>Skapa Konto</p>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Hem</a></li>
+                <li><a href="../forstudenter.html">För studenter</a></li>
+                <li><a href="../publicerajobb.html">Publicera lediga jobb</a></li>
+                <li><a href="../jobbamedoss.html">Jobba med Talangträdet</a></li>
+                <li><a href="../omoss.html">Om Oss</a></li>
+                <li><a href="../konto/login.html">Logga In / Registrera</a></li>
+            </ul>
+        </nav>
+
+        <div class="main-content">
+            <h2>Registrera Nytt Konto</h2>
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="username-register">Användarnamn</label>
+                    <input type="text" id="username-register" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password-register">Lösenord</label>
+                    <input type="password" id="password-register" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Bekräfta Lösenord</label>
+                    <input type="password" id="confirm-password" name="confirm-password" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Skapa Konto</button>
+                </div>
+            </form>
+
+            <p class="new-user-text">Har du redan ett konto? <a href="login.html">Logga in här</a></p>
+        </div>
+    </div>
+</body>
+</html>

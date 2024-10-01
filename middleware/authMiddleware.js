@@ -1,5 +1,7 @@
 const jwt = require('jsonwebtoken');
-const JWT_SECRET = 'dinSuperHemligaNyckel123';
+require('dotenv').config(); // Ladda miljövariabler
+
+const JWT_SECRET = process.env.JWT_SECRET; // Hämta JWT-hemligheten från miljövariabler
 
 const protect = (req, res, next) => {
     const token = req.cookies.token;

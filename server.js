@@ -4,8 +4,13 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const protect = require('./authMiddleware'); // Importera din middleware
+const protect = require('./middleware/authMiddleware');
 const app = express();
+// NYCKEL
+require('dotenv').config(); // Ladda miljövariabler
+
+
+
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -82,7 +87,7 @@ app.post('/api/login', async (req, res) => {
 
   if (user && await bcrypt.compare(password, user.password)) {
       // Skapa en token
-      const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: '1h' }); // Token varar i 1 timme
+      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
       res.cookie('token', token, { httpOnly: true }); // Sätt token i en cookie
       res.json({ success: true, message: 'Inloggning lyckades!' });
   } else {

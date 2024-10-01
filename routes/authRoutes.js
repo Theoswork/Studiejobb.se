@@ -3,9 +3,10 @@ const router = express.Router();
 const User = require('../models/userModel');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+require('dotenv').config(); // Ladda miljövariabler
 
 // Hemligt nyckel för JWT
-const JWT_SECRET = 'dinSuperHemligaNyckel123';
+const JWT_SECRET = process.env.JWT_SECRET; // Hämta JWT-hemligheten från miljövariabler
 
 // Skapa token
 const createToken = (id) => {
