@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logga In / Registrera - TalangTrädet</title>
+    <link rel="stylesheet" href="../css/style.css"> <!---länka från html till css-->
+    <script src="loginNewuser.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>TalangTrädet</h1>
+            <p>Logga In / Registrera</p>
+        </header>
+        <div class="content">
+            <div class="main-content">
+                <h2>Registrera Ny Användare</h2>
+                <form id="register-form">
+                    <div class="form-group">
+                        <label for="username-register">Användarnamn</label>
+                        <input type="text" id="username-register" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password-register">Lösenord</label>
+                        <input type="password" id="password-register" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit">Registrera</button>
+                    </div>
+                </form>
+
+                <h2>Logga In</h2>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="username-login">Användarnamn</label>
+                        <input type="text" id="username-login" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password-login">Lösenord</label>
+                        <input type="password" id="password-login" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit">Logga In</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

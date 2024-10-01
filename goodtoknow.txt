@@ -42,4 +42,8 @@ Slutsats
 Du har lyckats bygga en funktionell webbapplikation som låter användare publicera jobbannonser. Genom att integrera frontend och backend har du lärt dig om webbutveckling, API-hantering och databaskommunikation.
 Nästa steg
 
-
+express: Webbramverk för att hantera backend-rutter.
+mongoose: För att interagera med MongoDB-databasen.
+bcryptjs: För att hasha och validera lösenord.
+jsonwebtoken: För att skapa och verifiera JWT-tokens för autentisering.
+cookie-parser: För att hantera cookies (för att lagra JWT på klienten).

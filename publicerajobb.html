@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/style.css"> <!---länka från html till css-->
     <script src="js/linkHandler.js"></script>
     <script src="js/publicera.js" defer></script>
+    <script src="konto/loginNewuser" defer></script>
 </head>
 <body>
     <div class="container">
@@ -70,11 +71,11 @@
                     </div>
                     <div class="form-group"></div>
                         <label for="keywords">Nyckelord</label>
-                        <input type="text" id="keywords" name="keywords" class="form-control" placeholder="(komma-separerade)">
+                        <input   id="keywords" name="keywords" required placeholder="(komma-separerade)">
 
-                        <div class="form-group">
-                            <button type="submit" class="tree-button">Publisera jobb</button>
-                        </div>
+                    <div class="form-group">
+                        <button type="submit" class="tree-button">Publisera jobb</button>
+                    </div>
                 </form>
                 
             </div>

@@ -24,6 +24,8 @@
                 <li><a href="publicerajobb.html">Publicera lediga jobb</a></li>
                 <li><a href="jobbamedoss.html">Jobba med Talangträdet</a></li>
                 <li><a href="omoss.html">Om Oss</a></li>
+                <li><a href="konto/login.html">Logga In / Registrera</a></li>
+
             </ul>
         </nav>
         
@@ -61,6 +63,16 @@
                     <li>Regelbundet uppdaterade jobbannonser från olika branscher.</li>
                 </ul>
                 <p>Börja din jobbsökning idag och ta första steget mot din framtida karriär!</p>
+                <p>Logga in</p>
+                <form id="login-form" action="/api/auth/login" method="POST">
+                    <label for="email">E-post</label>
+                    <input type="email" id="email" name="email" required>
+                
+                    <label for="password">Lösenord</label>
+                    <input type="password" id="password" name="password" required>
+                
+                    <button type="submit">Logga in</button>
+                </form>
             </div>
         </div>
             </div>
