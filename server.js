@@ -2,8 +2,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const bcrypt = require('bcrypt'); // För lösenordshashning
-const jwt = require('jsonwebtoken'); // För autentisering
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const protect = require('./authMiddleware'); // Importera din middleware
 const app = express();
 
 app.use(cors());
@@ -76,14 +77,17 @@ app.post('/api/register', async (req, res) => {
 
 // API endpoint för inloggning
 app.post('/api/login', async (req, res) => {
-    const { username, password } = req.body;
-    const user = await User.findOne({ username });
+  const { username, password } = req.body;
+  const user = await User.findOne({ username });
 
-    if (user && await bcrypt.compare(password, user.password)) {
-        res.json({ success: true, message: 'Inloggning lyckades!' });
-    } else {
-        res.status(401).json({ success: false, message: 'Felaktiga inloggningsuppgifter.' });
-    }
+  if (user && await bcrypt.compare(password, user.password)) {
+      // Skapa en token
+      const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: '1h' }); // Token varar i 1 timme
+      res.cookie('token', token, { httpOnly: true }); // Sätt token i en cookie
+      res.json({ success: true, message: 'Inloggning lyckades!' });
+  } else {
+      res.status(401).json({ success: false, message: 'Felaktiga inloggningsuppgifter.' });
+  }
 });
 
 // Middleware för autentisering (exempel)
@@ -100,7 +104,7 @@ function authenticateToken(req, res, next) {
 
 // Skyddad rutt som kräver autentisering
 app.get('/api/protected', authenticateToken, (req, res) => {
-    res.send('Denna information är skyddad och kräver inloggning.');
+    res.json('Denna information är skyddad och kräver inloggning.');
 });
 
 // Starta servern

@@ -58,7 +58,7 @@ app.post('/api/jobs', async (req, res) => {
         res.status(500).send('Det gick inte att spara annonsen.');
         console.error(error);
     }
-});
+
 
 // Starta servern
 app.listen(3000, () => {
